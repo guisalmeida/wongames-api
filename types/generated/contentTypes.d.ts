@@ -454,7 +454,15 @@ export interface ApiGameGame extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Blocks;
+    description: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3Njk1NTgzOTksImp0aSI6IjAxNmE2YmM0LWIyYzItNGZiYi1hZThiLWM5ZmM5ODJlNTA3MCIsImxpY2Vuc2VkSG9zdHMiOlsiMTI3LjAuMC4xIiwibG9jYWxob3N0IiwiMTkyLjE2OC4qLioiLCIxMC4qLiouKiIsIjE3Mi4qLiouKiIsIioudGVzdCIsIioubG9jYWxob3N0IiwiKi5sb2NhbCJdLCJ1c2FnZUVuZHBvaW50IjoiaHR0cHM6Ly9wcm94eS1ldmVudC5ja2VkaXRvci5jb20iLCJkaXN0cmlidXRpb25DaGFubmVsIjpbImNsb3VkIiwiZHJ1cGFsIl0sImxpY2Vuc2VUeXBlIjoiZGV2ZWxvcG1lbnQiLCJmZWF0dXJlcyI6WyJEUlVQIl0sInZjIjoiNzMxNzM3ZjkifQ.JKt-_cu6yRdSS_OGT2GpcjiQftI6A0Ntc6R_aPVBknX2w-zMIyGQNdpoGrzcd_8_nwjTiOV_G1Yv_sRNQXQ1Aw';
+          output: 'HTML';
+          preset: 'rich';
+        }
+      >;
     developers: Schema.Attribute.Relation<
       'manyToMany',
       'api::developer.developer'
